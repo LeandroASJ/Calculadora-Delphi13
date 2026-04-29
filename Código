@@ -1,0 +1,291 @@
+unit Unit121;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    btn_Sete: TButton;
+    btn_Tres: TButton;
+    btn_Oito: TButton;
+    btn_nove: TButton;
+    btn_Quatro: TButton;
+    btn_Cinco: TButton;
+    btn_Seis: TButton;
+    btn_Dois: TButton;
+    btn_Um: TButton;
+    btn_Zero: TButton;
+    btn_Igual: TButton;
+    btn_Adicao: TButton;
+    btn_subtracao: TButton;
+    btn_Divisao: TButton;
+    btn_Multiplicacao: TButton;
+    btn_Ponto: TButton;
+    btn_Limpar: TButton;
+    edt_Visor1: TEdit;
+    lb_Operador: TLabel;
+    edt_Visor2: TEdit;
+    Shape1: TShape;
+    lb_Resposta: TLabel;
+    procedure btn_subtracaoClick(Sender: TObject);
+    procedure btn_AdicaoClick(Sender: TObject);
+    procedure btn_DivisaoClick(Sender: TObject);
+    procedure btn_MultiplicacaoClick(Sender: TObject);
+    procedure btn_IgualClick(Sender: TObject);
+    procedure btn_UmClick(Sender: TObject);
+    procedure btn_DoisClick(Sender: TObject);
+    procedure btn_TresClick(Sender: TObject);
+    procedure btn_ZeroClick(Sender: TObject);
+    procedure btn_QuatroClick(Sender: TObject);
+    procedure btn_CincoClick(Sender: TObject);
+    procedure btn_SeisClick(Sender: TObject);
+    procedure btn_SeteClick(Sender: TObject);
+    procedure btn_OitoClick(Sender: TObject);
+    procedure btn_noveClick(Sender: TObject);
+    procedure btn_LimparClick(Sender: TObject);
+    procedure btn_PontoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btn_AdicaoClick(Sender: TObject);
+begin
+   lb_Operador.Caption := '+';
+   //Essa função é para quando eu apertar em um botão ele desabilitar-
+  // no intuito de que essa operação não seja selecionada novamente
+   btn_Multiplicacao.Enabled := true;
+   btn_Adicao.Enabled := false;
+   btn_Divisao.Enabled := true;
+   btn_Subtracao.Enabled := true;
+end;
+
+procedure TForm1.btn_CincoClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '5';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '5';
+    end;
+end;
+
+procedure TForm1.btn_DivisaoClick(Sender: TObject);
+begin
+  lb_Operador.Caption := '/';
+
+  //Essa função é para quando eu apertar em um botão ele desabilitar-
+// no intuito de que essa operação não seja selecionada novamente
+     btn_Multiplicacao.Enabled := true;
+     btn_Adicao.Enabled := true;
+     btn_Divisao.Enabled := false;
+     btn_Subtracao.Enabled := true;
+end;
+
+procedure TForm1.btn_DoisClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '2';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '2';
+    end;
+end;
+
+procedure TForm1.btn_IgualClick(Sender: TObject);
+  var n1, n2: double;
+begin
+  n1:= strToFloat (edt_Visor1.Text);
+  n2:= strToFloat (edt_Visor2.Text);
+
+  //Fazendo a soma
+
+  if (lb_Operador.Caption = '+') Then
+  begin
+     lb_resposta.caption := (floattostr(n1 + n2));
+  end;
+
+  //Fazendo a subtração
+
+  if (lb_Operador.Caption = '-') then
+  begin
+    lb_resposta.caption := (floattostr(n1 - n2));
+  end;
+
+  //Fazendo a multiplicação
+
+  if (lb_Operador.caption = 'X') then
+  begin
+    lb_resposta.caption := (floattostr(n1 * n2));
+  end;
+
+  //Fazendo a divisão
+
+    if (lb_Operador.caption = '/') then
+  begin
+    lb_resposta.caption := (floattostr(n1 / n2));
+  end;
+
+
+
+  end;
+
+procedure TForm1.btn_LimparClick(Sender: TObject);
+begin
+  edt_Visor1.Clear;
+  edt_Visor2.Clear;
+  lb_Resposta.caption := '';
+  edt_Visor1.SetFocus;
+
+end;
+
+procedure TForm1.btn_MultiplicacaoClick(Sender: TObject);
+begin
+  lb_Operador.Caption := 'X';
+
+  //Essa função é para quando eu apertar em um botão ele desabilitar-
+// no intuito de que essa operação não seja selecionada novamente
+    btn_Multiplicacao.Enabled := false;
+     btn_Adicao.Enabled := true;
+     btn_Divisao.Enabled := true;
+     btn_Subtracao.Enabled := true;
+end;
+
+procedure TForm1.btn_noveClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '9';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '9';
+    end;
+end;
+
+procedure TForm1.btn_OitoClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '8';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '8';
+    end;
+end;
+
+procedure TForm1.btn_PontoClick(Sender: TObject);
+begin
+     if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + ',';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + ',';
+    end;
+end;
+
+procedure TForm1.btn_QuatroClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '4';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '4';
+    end;
+end;
+
+procedure TForm1.btn_SeisClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '6';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '6';
+    end;
+end;
+
+procedure TForm1.btn_SeteClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '7';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '7';
+    end;
+end;
+
+procedure TForm1.btn_subtracaoClick(Sender: TObject);
+begin
+     lb_Operador.Caption := '-';
+
+  //Essa função é para quando eu apertar em um botão ele desabilitar-
+// no intuito de que essa operação não seja selecionada novamente
+     btn_Multiplicacao.Enabled := true;
+     btn_Adicao.Enabled := true;
+     btn_Divisao.Enabled := true;
+     btn_Subtracao.Enabled := false;
+
+end;
+
+procedure TForm1.btn_TresClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '3';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '3';
+    end;
+end;
+
+procedure TForm1.btn_UmClick(Sender: TObject);
+begin
+
+  if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '1';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '1';
+    end;
+end;
+
+procedure TForm1.btn_ZeroClick(Sender: TObject);
+begin
+if lb_Operador.caption = '.' then
+    begin
+      edt_Visor1.Text := edt_Visor1.Text + '0';
+    end
+    else
+    begin
+      edt_Visor2.Text := edt_Visor2.Text + '0';
+    end;
+end;
+
+end.
